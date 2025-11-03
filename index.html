@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kelly 계산기 — 수동/붙여넣기(3종 스포츠)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>Kelly 계산기 (수동 입력 / 붙여넣기)</h1>
+    <p class="note">오즈포탈 등에서 표를 복사해서 붙여넣거나 CSV 업로드로 바로 계산하세요. (자동 스크래핑 불가)</p>
+
+    <div class="tabs">
+      <button class="tab active" data-sport="soccer">축구 ⚽</button>
+      <button class="tab" data-sport="basketball">농구 🏀</button>
+      <button class="tab" data-sport="baseball">야구 ⚾</button>
+    </div>
+
+    <div class="controls">
+      <input type="file" id="fileInput" accept=".csv" />
+      <button id="pasteGuide" class="btn">붙여넣기 안내</button>
+      <button id="clearBtn" class="btn">전체삭제</button>
+    </div>
+
+    <div class="paste-area">
+      <label>표/CSV 붙여넣기 또는 직접 입력 (한 줄당 한 경기):</label>
+      <textarea id="pasteBox" placeholder="예: Team A - Team B,2.50,3.40,3.10  (홈,무,원정의 배당)"></textarea>
+      <div class="paste-actions">
+        <button id="parseBtn" class="btn">붙여넣기 파싱</button>
+        <button id="addRowBtn" class="btn">수동행 추가</button>
+      </div>
+    </div>
+
+    <table id="resultTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>경기</th>
+          <th>결과</th>
+          <th>배당</th>
+          <th>암시확률</th>
+          <th>정규화 확률</th>
+          <th>Kelly 비율</th>
+          <th>50% Kelly</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="summary" class="summary"></div>
+
+    <footer>설명: 붙여넣기로는 "Match,odds1,odds2,odds3" 형태(또는 CSV)를 사용하세요. 시스템은 암시확률(1/odd)을 계산, 정규화 후 각 결과에 대해 개별 Kelly 비율을 표시합니다.</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
